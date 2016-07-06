@@ -1,0 +1,34 @@
+source ./climate
+
+# ----------------------------------------------------------------------------
+# Colors Test
+
+printf "Colors Test\n"
+printf "${RED}RED "
+printf "${GREEN}GREEN "
+printf "${BLUE}BLUE "
+printf "${YELLOW}YELLOW "
+printf "${PLAIN}PLAIN\n"
+printf "${RED_BOLD}RED_BOLD "
+printf "${GREEN_BOLD}GREEN_BOLD "
+printf "${BLUE_BOLD}BLUE_BOLD "
+printf "${YELLOW_BOLD}YELLOW_BOLD "
+printf "${PLAIN_BOLD}PLAIN_BOLD\n"
+printf "${PLAIN}\n"
+
+# ----------------------------------------------------------------------------
+# Spinner Test
+
+printf "Spinner Test\n"
+sleep 1 &
+pid=$!
+printf "PID ${pid} started in background\n"
+spinner $pid
+printf "PID ${pid} finished\n\n\n"
+
+printf "Spinner Test - lock\n"
+bash -c "sleep 1 && echo 'somerandomstring'" &
+pid=$!
+printf "PID ${pid} started in background\n"
+spinner $pid
+printf "PID ${pid} finished\n\n\n"
