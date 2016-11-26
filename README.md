@@ -18,7 +18,7 @@ $ bash -c "$(curl -fsSL https://raw.githubusercontent.com/adtac/climate/master/i
 Using `wget`:
 
 ```bash
-$ bash -c "$(wget https://raw.githubusercontent.com/adtac/climate/master/install -O -)"
+$ bash -c "$(wget https://raw.githubusercontent.com/adtac/climate/master/install -q -O -)"
 ```
 
 And that's it! It should automatically look for dependencies and install them.
