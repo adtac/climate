@@ -25,8 +25,8 @@ ctrl_c() {
 }
 
 spinner() {
-    spin="\\|/-"
-    i=0
+    local spin="\\|/-"
+    local i=0
     tput civis
     while kill -0 $1 2>/dev/null; do
         i=$(( (i+1) %4 ))
