@@ -162,7 +162,7 @@ PACKAGE_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 main() {
     if [[ "$EUID" -ne 0 ]]; then
-        printf "${RED_BOLD}Error: must be root to install.\n"
+        printf "${RED_BOLD}Error: must be root to install.${PLAIN}\n"
         exit
     fi
 
