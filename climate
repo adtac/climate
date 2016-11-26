@@ -25,8 +25,6 @@ ctrl_c() {
     exit
 }
 
-ABSOLUTE_PATH="$(cd "$(dirname "${0}")" && pwd)/$(basename "${0}")"
-
 spinner() {
     spin="\\|/-"
     i=0
