@@ -191,7 +191,7 @@ main() {
     ask EDITOR "What's your favourite editor?" "vi"
 
     CLIMATE_SRC=/usr/local/bin/climate
-    printf "#!/bin/sh\n\n" > $CLIMATE_SRC
+    printf "#!/bin/bash\n\n" > $CLIMATE_SRC
     printf "SHOW_COMMAND=${EDITOR}\n" >> $CLIMATE_SRC
     printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
     printf "\n" >> $CLIMATE_SRC
