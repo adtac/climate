@@ -124,7 +124,6 @@ ix() {
 command=$1
 commandargs=$2
 commandargs2=$3
-otherargs=${@:4}
 
 help=$(
     printf "${RED_BOLD}"
@@ -414,7 +413,7 @@ elif [[ $command == "grep " ]]; then
     find . -iname "*"$commandargs2 -type f | xargs grep -in --color "$commandargs"
 
 elif [[ $command == "replace" ]]; then
-    replace $commandargs $commandargs2 $otherargs &
+    replace $commandargs $commandargs2 &
     spinner $!
 
 # ----------------------------------------------------------------------------
