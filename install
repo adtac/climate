@@ -162,9 +162,10 @@ PACKAGE_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 main() {
     INSTALL_DIR=/usr/local/bin
-    if [[ -z "$1" ]]; then
+    if [[ ! -z "$1" ]]; then
         INSTALL_DIR="$1"
     fi
+
     if [[ ! -w "$INSTALL_DIR" ]]; then
         printf "${RED_BOLD}Error: must be root to install.${PLAIN}\n"
         exit
@@ -196,7 +197,8 @@ main() {
 
     ask EDITOR "What's your favourite editor?" "vi"
 
-    CLIMATE_SRC=/usr/local/bin/climate
+    CLIMATE_EXEC="climate"
+    CLIMATE_SRC=$INSTALL_DIR$CLIMATE_EXEC
     printf "#!/usr/bin/env bash\n\n" > $CLIMATE_SRC
     printf "SHOW_COMMAND=${EDITOR}\n" >> $CLIMATE_SRC
     printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
