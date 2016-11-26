@@ -21,6 +21,7 @@ PLAIN_BOLD='\033[1;37m'
 trap ctrl_c INT
 ctrl_c() {
     tput cnorm
+    kill $(jobs -p)
     exit
 }
 
