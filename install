@@ -101,7 +101,7 @@ system_verify() {
 
             elif command_exists apt-get && [[ "$2" != "-" ]]; then
                 sudo apt-get install -y "$2"  > /dev/null 2>&1 &
-                spinner
+                spinner $!
             fi
 
             printf "\b${GREEN}Installed!"
