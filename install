@@ -94,17 +94,22 @@ system_verify() {
             if command_exists dnf && [[ "$3" != "-" ]]; then
                 sudo dnf install -y "$3"  > /dev/null 2>&1 &
                 spinner $!
+                printf "\b${GREEN}Installed!"
 
             elif command_exists yum && [[ "$3" != "-" ]]; then
                 sudo yum install -y "$3"  > /dev/null 2>&1 &
                 spinner $!
+                printf "\b${GREEN}Installed!"
 
             elif command_exists apt-get && [[ "$2" != "-" ]]; then
                 sudo apt-get install -y "$2"  > /dev/null 2>&1 &
                 spinner $!
+                printf "\b${GREEN}Installed!"
+
+            else
+                printf "${RED}Package doesn't exist for your arch. Please install it manually."
             fi
 
-            printf "\b${GREEN}Installed!"
         else
             printf "Please install it manually."
         fi
