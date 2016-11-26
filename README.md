@@ -99,7 +99,7 @@ Command | Description
  `climate dir-size [path]` | find directory size
  `climate remove-empty-dirs [path]` | remove empty directories
  `climate extract <file> [path]` | extract any given archive
- `climate grep <text> [ext]` | search for the given pattern recursively
+ `climate search <text> [ext]` | search for the given pattern recursively
  `climate find-duplicates [path]` | report duplicate files in a directory
  `climate count <file> <string>` | count the number of occurences
  `climate replace <text> <replacement> [ext]` | replace all occurences
