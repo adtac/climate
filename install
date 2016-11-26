@@ -88,7 +88,7 @@ system_verify() {
     if ! command_exists $1; then
         printf "${PLAIN} • ${RED}$1 missing.${PLAIN} "
 
-        if [[ -n "$(which apt-get)" ]] || [[ -n "$(which yum)" ]] || [[ -n "$(which dnf)" ]]; then
+        if command_exists apt-get || command_exists yum || command_exists dnf; then
             printf "Installing...  "
 
             if command_exists dnf && [[ "$3" != "-" ]]; then
