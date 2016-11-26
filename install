@@ -139,6 +139,26 @@ npm_verify() {
     printf "\n"
 }
 
+pip_verify() {
+    if ! command_exists $1; then
+        printf "${PLAIN} • ${RED}$1 missing.${PLAIN} "
+
+        if [[ -n "$(which npm)" ]]; then
+            printf "Installing...  "
+
+            sudo pip install "$2"  > /dev/null 2>&1 &
+            spinner $!
+
+            printf "\b${GREEN}Installed!"
+        else
+            printf "Please install it manually using pip."
+        fi
+    else
+        printf "${PLAIN} • ${GREEN}$1 exists!${PLAIN}"
+    fi
+    printf "\n"
+}
+
 # In directory
 PACKAGE_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -200,10 +220,11 @@ main() {
     system_verify "sensors"    "lm-sensors"    "lm_sensors"
     system_verify "sshfs"      "sshfs"         "fuse-sshfs"
 
-    npm_verify "speedtest"     "speedtest-cli"
     npm_verify "http-server"   "http-server"
     npm_verify "is-up"         "is-up-cli"
     npm_verify "is-online"     "is-online-cli"
+
+    pip_verify "speedtest"     "speedtest-cli"
 
     printf "\nNeat! You're all set. Run 'climate' to see the whole list "
     printf "of commands supported. Enjoy!\n"
