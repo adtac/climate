@@ -167,8 +167,8 @@ main() {
 
     CLIMATE_SRC=/usr/local/bin/climate
     printf "#!/bin/sh\n\n" > $CLIMATE_SRC
-    printf "\$SHOW_COMMAND=${EDITOR}\n" >> $CLIMATE_SRC
-    printf "\$EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
+    printf "SHOW_COMMAND=${EDITOR}\n" >> $CLIMATE_SRC
+    printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
     printf "\n" >> $CLIMATE_SRC
     tail -n +3 "$PACKAGE_DIRECTORY/climate/climate" >> $CLIMATE_SRC
 
