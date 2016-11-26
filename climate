@@ -299,19 +299,22 @@ elif [[ $command == "clock" ]]; then
     while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &
 
 elif [[ $command == "countdown" ]]; then
-    date1=$((`date +%s` + $commandargs));
+    now=$(date --utc +%s)
+    date1=$(expr $now + $commandargs);
     tput civis
-    while [[ "$date1" -ge `date +%s` ]]; do
-        echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
+    while [[ "$date1" -ge $(date +%s) ]]; do
+        now=$(date --utc +%s)
+        echo -ne "$(date --utc --date @$(expr $date1 - $now) +%H:%M:%S)\r";
         sleep 1
     done
     tput cnorm
 
 elif [[ $command == "stopwatch" ]]; then
-    date1=`date +%s`;
+    start_time=$(date --utc +%s)
     tput civis
     while true; do
-        echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+        now=$(date --utc +%s)
+        echo -ne "$(date -u --date @$(expr $now - $start_time) +%H:%M:%S)\r";
         sleep 1
     done
     tput cnorm
