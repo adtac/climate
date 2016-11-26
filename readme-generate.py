@@ -29,7 +29,8 @@ different location, you can give an argument to the install command.
 $ ./install [location]
 ```
 
-Using `curl`:
+You can also install using `curl` (although note that this
+[might be insecure](https://www.seancassidy.me/dont-pipe-to-your-shell.html))
 
 ```bash
 $ bash -c "$(curl -fsSL https://raw.githubusercontent.com/adtac/climate/master/install)"
