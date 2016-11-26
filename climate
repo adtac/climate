@@ -45,7 +45,7 @@ shelp() {
 }
 
 extract () {
-    if [ -f $1 ] ; then
+    if [[ -f $1 ]] ; then
         if [[ $2 == "" ]]; then
             case $1 in
                 *.rar)                             rar x   $1       ${1%.rar}/        ;;
@@ -95,7 +95,7 @@ replace() {
 ix() {
     local opts
     local OPTIND
-    [ -f "$HOME/.netrc" ] && opts='-n'
+    [[ -f "$HOME/.netrc" ]] && opts='-n'
     while getopts ":hd:i:n:" x; do
         case $x in
             h) echo "ix [-d ID] [-i ID] [-n N] [opts]"; return;;
@@ -105,10 +105,10 @@ ix() {
         esac
     done
     shift $(($OPTIND - 1))
-    [ -t 0 ] && {
+    [[ -t 0 ]] && {
         local filename="$1"
         shift
-        [ "$filename" ] && {
+        [[ "$filename" ]] && {
             curl $opts -F f:1=@"$filename" $* ix.io/$id
             return
         }
@@ -258,9 +258,9 @@ elif [[ $command == "battery" ]]; then
                      grep "time to empty" |
                      grep -o "[0-9].*")
 
-    if [ "$PERCENTAGE" -gt "30" ]; then
+    if [[ "$PERCENTAGE" -gt "30" ]]; then
         PERCENTAGE_COLOR=$GREEN_BOLD
-    elif [ "$PERCENTAGE" -gt "10"]; then
+    elif [[ "$PERCENTAGE" -gt "10" ]]; then
         PERCENTAGE_COLOR=$YELLOW_BOLD
     else
         PERCENTAGE_COLOR=$RED_BOLD
@@ -304,7 +304,7 @@ elif [[ $command == "clock" ]]; then
 elif [[ $command == "countdown" ]]; then
     date1=$((`date +%s` + $commandargs));
     tput civis
-    while [ "$date1" -ge `date +%s` ]; do
+    while [[ "$date1" -ge `date +%s` ]]; do
         echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
         sleep 1
     done
