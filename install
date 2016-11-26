@@ -192,10 +192,10 @@ main() {
     system_verify "gem"        "gem"           "gem"
     system_verify "fdupes"     "fdupes"        "fdupes"
     system_verify "glances"    "glances"       "glances"
-    system_verify "speedtest"  "speedtest-cli" "speedtest-cli"
     system_verify "sensors"    "lm-sensors"    "lm_sensors"
     system_verify "sshfs"      "sshfs"         "fuse-sshfs"
 
+    npm_verify "speedtest"     "speedtest-cli"
     npm_verify "http-server"   "http-server"
     npm_verify "is-up"         "is-up-cli"
     npm_verify "is-online"     "is-online-cli"
