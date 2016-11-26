@@ -12,13 +12,13 @@ The ultimate command line tool for Linux!
 Using `curl`:
 
 ```bash
-$ sh -c "$(curl -fsSL https://raw.githubusercontent.com/adtac/climate/master/install)"
+$ bash -c "$(curl -fsSL https://raw.githubusercontent.com/adtac/climate/master/install)"
 ```
 
 Using `wget`:
 
 ```bash
-$ sh -c "$(wget https://raw.githubusercontent.com/adtac/climate/master/install -O -)"
+$ bash -c "$(wget https://raw.githubusercontent.com/adtac/climate/master/install -O -)"
 ```
 
 And that's it! It should automatically look for dependencies and install them.
