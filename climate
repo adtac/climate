@@ -250,12 +250,10 @@ elif [[ $command == "weather" ]]; then
 # Display battery status
 
 elif [[ $command == "battery" ]]; then
-    PERCENTAGE=$(upower -i $(upower -e | grep battery) |
-                 grep "percentage" |
-                 grep -o "[0-9]*")
-    TIME_REMAINING=$(upower -i $(upower -e | grep battery) |
-                     grep "time to empty" |
-                     grep -o "[0-9].*")
+    PERCENTAGE=$(upower -i "$(upower -e | grep battery)" |
+    awk -F: '/percentage/{gsub(/^\s+|[\s%]+$/, "", $2); print $2}')
+    TIME_REMAINING=$(upower -i "$(upower -e | grep battery)" |
+    awk -F: '/time to empty/{gsub(/^\s+|\s+$/, "", $2); print $2}')
 
     if [[ "$PERCENTAGE" -gt "30" ]]; then
         PERCENTAGE_COLOR=$GREEN_BOLD
