@@ -40,6 +40,13 @@ spinner() {
     tput cnorm
 }
 
+log() {
+    if [[ $SHOW_COMMAND == "true" ]]; then
+        printf "+ "
+        echo "$@"
+    fi
+}
+
 shelp() {
     COMMAND_SIZE=-40s
     HELP_SIZE=15s
@@ -245,6 +252,7 @@ elif [[ $command == "version" ]]; then
 # Get the weather from wttr.in
 
 elif [[ $command == "weather" ]]; then
+    log 'curl -s wttr.in/$commandargs | head -n 7 && printf "\n"'
     curl -s wttr.in/$commandargs | head -n 7 && printf "\n" &
     spinner $!
 
@@ -271,22 +279,28 @@ elif [[ $command == "battery" ]]; then
 # Power options
 
 elif [[ $command == "sleep" ]]; then
+    log 'systemctl suspend'
     systemctl suspend
 
 elif [[ $command == "lock" ]]; then
+    log 'kxdg-screensaver lock'
     xdg-screensaver lock
 
 elif [[ $command == "shutdown" ]]; then
     if [[ $commandargs == "" ]]; then
+        log 'sudo shutdown -h now'
         sudo shutdown -h now
     else
+        log 'sudo shutdown -h $commandargs'
         sudo shutdown -h $commandargs
     fi
 
 elif [[ $command == "restart" ]]; then
     if [[ $commandargs == "" ]]; then
+        log 'sudo reboot'
         sudo reboot
     else
+        log 'sudo -- sh -c "sleep $commandargs; reboot"'
         sudo -- sh -c "sleep $commandargs; reboot"
     fi
 
@@ -298,7 +312,13 @@ elif [[ $command == "time" ]]; then
     printf "${PLAIN_BOLD}${DATE_TIME}${PLAIN}\n"
 
 elif [[ $command == "clock" ]]; then
-    while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &
+    log 'while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done'
+    while sleep 1; do
+        tput sc
+        tput cup 0 $(($(tput cols)-29))
+        date
+        tput rc
+    done &
 
 elif [[ $command == "countdown" ]]; then
     now=$(date --utc +%s)
@@ -335,6 +355,7 @@ elif [[ $command == "biggest-files" ]]; then
         commandargs="."
     fi
 
+    log 'find $commandargs -type f -print0 | xargs -0 du | sort -rn | head -n 10 | cut -f2 | xargs -I{} du -sh {}'
     find $commandargs -type f -print0 |
         xargs -0 du |
         sort -rn |
@@ -351,6 +372,7 @@ elif [[ $command == "biggest-dirs" ]]; then
         commandargs="."
     fi
 
+    log 'find $commandargs -maxdepth 1 -type d -print0 | xargs -0 du --max-depth=1 | sort -rn | head -n 11 | tail -n +2 | cut -f2 | xargs -I{} du -sh {}'
     find $commandargs -maxdepth 1 -type d -print0 |
         xargs -0 du --max-depth=1 |
         sort -rn |
@@ -368,6 +390,7 @@ elif [[ $command == "dir-size" ]]; then
         commandargs="."
     fi
 
+    log 'du -sh $commandargs | cut -f1'
     du -sh $commandargs | cut -f1 &
     spinner $!
 
@@ -379,6 +402,7 @@ elif [[ $command == "remove-empty-dirs" ]]; then
         commandargs="."
     fi
 
+    log 'find $commandargs -maxdepth 1 -type d -empty | xargs rm -rf'
     find $commandargs -maxdepth 1 -type d -empty | xargs rm -rf
 
 # ----------------------------------------------------------------------------
@@ -388,6 +412,7 @@ elif [[ $command == "count" ]]; then
     if [[ $commandargs != "" && -f $commandargs ]]; then
         if [[ $commandargs2 != "" ]]; then
             printf "${PLAIN_BOLD}"
+            log 'grep -c "$commandargs2" $commandargs | tr -d "\n"'
             grep -c "$commandargs2" $commandargs | tr -d '\n'
             printf "${PLAIN} occurences\n"
         fi
@@ -401,6 +426,7 @@ elif [[ $command == "find-duplicates" ]]; then
         commandargs="."
     fi
 
+    log 'fdupes $commandargs'
     fdupes $commandargs &
     spinner $!
 
@@ -411,9 +437,11 @@ elif [[ $command == "search" ]]; then
     if [[ $commandargs2 != ".*" && $commandargs2 != "" ]]; then
         commandargs2="."$commandargs2
     fi
+    log 'find . -iname "*"$commandargs2 -type f | xargs grep -in --color "$commandargs"'
     find . -iname "*"$commandargs2 -type f | xargs grep -in --color "$commandargs"
 
 elif [[ $command == "replace" ]]; then
+    log 'replace $commandargs $commandargs2'
     replace $commandargs $commandargs2 &
     spinner $!
 
@@ -422,6 +450,7 @@ elif [[ $command == "replace" ]]; then
 
 elif [[ $command == "monitor" ]]; then
     if [[ $commandargs != "" ]]; then
+        log 'tail -f $commandargs'
         tail -f $commandargs
     fi
 
@@ -437,6 +466,7 @@ elif [[ $command == "ramfs" ]]; then
                 printf "${PLAIN}Please remove it and try again.\n"
             else
                 mkdir $commandargs2
+                log 'sudo mount -t tmpfs tmpfs ./$commandargs2 -o size=$commandargs$m'
                 sudo mount -t tmpfs tmpfs ./$commandargs2 -o size=$commandargs$m
             fi
         fi
@@ -452,6 +482,7 @@ elif [[ $command == "extract" ]]; then
 # Network utilities
 
 elif [[ $command == "speedtest" ]]; then
+    log 'speedtest --simple'
     speedtest --simple &
     spinner $!
 
