@@ -162,7 +162,7 @@ help=$(
     shelp "dir-size [path]" "find directory size"
     shelp "remove-empty-dirs [path]" "remove empty directories"
     shelp "extract <file> [path]" "extract any given archive"
-    shelp "grep <text> [ext]" "search for the given pattern recursively"
+    shelp "search <text> [ext]" "search for the given pattern recursively"
     shelp "find-duplicates [path]" "report duplicate files in a directory"
     shelp "count <file> <string>" "count the number of occurences"
     shelp "replace <text> <replacement> [ext]" "replace all occurences"
@@ -407,7 +407,7 @@ elif [[ $command == "find-duplicates" ]]; then
 # ----------------------------------------------------------------------------
 # Find and replace
 
-elif [[ $command == "grep " ]]; then
+elif [[ $command == "search" ]]; then
     if [[ $commandargs2 != ".*" && $commandargs2 != "" ]]; then
         commandargs2="."$commandargs2
     fi
