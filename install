@@ -157,9 +157,6 @@ pip_verify() {
     printf "\n"
 }
 
-# In directory
-PACKAGE_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 main() {
     INSTALL_DIR=/usr/local/bin
     if [[ ! -z "$1" ]]; then
@@ -188,6 +185,8 @@ main() {
         cd climate
     fi
 
+    CUR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
     printf "\n${PLAIN}Alright, let's get started with a few questions. Just press enter if you want to use the ${GREEN_BOLD}default value.\n\n"
 
     SHOW_COMMAND=false
@@ -203,7 +202,7 @@ main() {
     printf "SHOW_COMMAND=${EDITOR}\n" >> $CLIMATE_SRC
     printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
     printf "\n" >> $CLIMATE_SRC
-    tail -n +3 "$PACKAGE_DIRECTORY/climate" >> $CLIMATE_SRC
+    tail -n +3 "$CUR_DIR/climate" >> $CLIMATE_SRC
     chmod +x $CLIMATE_SRC
 
     printf "\nGreat. Now, let's check if you have the all requirements:\n\n"
