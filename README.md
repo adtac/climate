@@ -138,3 +138,13 @@ Command | Description
  `climate get-pids <process>` | get all PIDs for a process name
  `climate trash-size` | find the trash size
  `climate empty-trash` | empty the trash
+
+
+## License
+
+Thanks to [guarinogabriel/Mac-CLI](https://github.com/guarinogabriel/Mac-CLI)
+for the inspiration.
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (AGPL).
+
+

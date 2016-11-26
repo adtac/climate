@@ -71,3 +71,13 @@ for line in lines:
             command = " `climate " + line[1] + "`"
             helptext = line[3]
             print(command + " | " + helptext)
+
+print("""\n
+## License
+
+Thanks to [guarinogabriel/Mac-CLI](https://github.com/guarinogabriel/Mac-CLI)
+for the idea.
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (AGPL).
+
+""")
