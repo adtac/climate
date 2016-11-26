@@ -228,7 +228,7 @@ main() {
     pip_verify "speedtest"     "speedtest-cli"
 
     printf "\nNeat! You're all set. Run 'climate' to see the whole list "
-    printf "of commands supported. Enjoy!\n"
+    printf "of commands supported. Enjoy!${PLAIN}\n"
 }
 
 main
