@@ -200,7 +200,7 @@ main() {
     npm_verify "is-up"         "is-up-cli"
     npm_verify "is-online"     "is-online-cli"
 
-    printf "\nNeat! You're all set. Run `climate` to see the whole list "
+    printf "\nNeat! You're all set. Run 'climate' to see the whole list "
     printf "of commands supported. Enjoy!\n"
 }
 
