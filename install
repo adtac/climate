@@ -171,6 +171,7 @@ main() {
     printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
     printf "\n" >> $CLIMATE_SRC
     tail -n +3 "$PACKAGE_DIRECTORY/climate/climate" >> $CLIMATE_SRC
+    chmod +x $CLIMATE_SRC
 
     printf "\nGreat. Now, let's check if you have the all requirements:\n\n"
 
