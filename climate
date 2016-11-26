@@ -80,9 +80,8 @@ extract () {
 
 replace() {
     find_this="$1"
-    shift
-    replace_with="$1"
-    shift
+    replace_with="$2"
+    shift 2
 
     items=$(ag -l --nocolor "$find_this" "$@")
     temp="${TMPDIR:-/tmp}/climate_replace_temp.$$"
