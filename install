@@ -161,7 +161,11 @@ pip_verify() {
 PACKAGE_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 main() {
-    if [[ "$EUID" -ne 0 ]]; then
+    INSTALL_DIR=/usr/local/bin
+    if [[ -z "$1" ]]; then
+        INSTALL_DIR="$1"
+    fi
+    if [[ ! -w "$INSTALL_DIR" ]]; then
         printf "${RED_BOLD}Error: must be root to install.${PLAIN}\n"
         exit
     fi
@@ -175,10 +179,13 @@ main() {
     printf "│\n"
     printf "└───────────────────┘\n"
 
-    printf "Downloading...  "
-    system_verify "git" "git-all" "git-all"
-    git clone https://github.com/adtac/climate.git --depth=1 > /dev/null 2>&1 &
-    spinner $!
+    if [[ ! -f "climate" ]]; then
+        printf "Downloading...  "
+        system_verify "git" "git-all" "git-all"
+        git clone https://github.com/adtac/climate.git --depth=1 > /dev/null 2>&1 &
+        spinner $!
+        cd climate
+    fi
 
     printf "\n${PLAIN}Alright, let's get started with a few questions. Just press enter if you want to use the ${GREEN_BOLD}default value.\n\n"
 
@@ -194,7 +201,7 @@ main() {
     printf "SHOW_COMMAND=${EDITOR}\n" >> $CLIMATE_SRC
     printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
     printf "\n" >> $CLIMATE_SRC
-    tail -n +3 "$PACKAGE_DIRECTORY/climate/climate" >> $CLIMATE_SRC
+    tail -n +3 "$PACKAGE_DIRECTORY/climate" >> $CLIMATE_SRC
     chmod +x $CLIMATE_SRC
 
     printf "\nGreat. Now, let's check if you have the all requirements:\n\n"
@@ -226,4 +233,4 @@ main() {
     printf "of commands supported. Enjoy!${PLAIN}\n"
 }
 
-main
+main $@

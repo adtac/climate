@@ -9,6 +9,21 @@ The ultimate command line tool for Linux!
 
 ## Installation
 
+Clone the repository and run the `install` command:
+
+```bash
+$ git clone https://github.com/adtac/climate.git
+$ cd climate
+$ sudo ./install
+```
+
+The default location is `/usr/local/bin/`. If you want to write to a
+different location, you can give an argument to the install command.
+
+```bash
+$ ./install [location]
+```
+
 Using `curl`:
 
 ```bash
