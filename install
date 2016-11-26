@@ -178,6 +178,7 @@ main() {
     printf "└───────────────────┘\n"
 
     printf "Downloading...  "
+    system_verify "git" "git-all" "git-all"
     git clone https://github.com/adtac/climate.git --depth=1 > /dev/null 2>&1 &
     spinner $!
 
