@@ -199,7 +199,7 @@ main() {
     CLIMATE_EXEC="climate"
     CLIMATE_SRC=$INSTALL_DIR/$CLIMATE_EXEC
     printf "#!/usr/bin/env bash\n\n" > $CLIMATE_SRC
-    printf "SHOW_COMMAND=${EDITOR}\n" >> $CLIMATE_SRC
+    printf "SHOW_COMMAND=${SHOW_COMMAND}\n" >> $CLIMATE_SRC
     printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
     printf "\n" >> $CLIMATE_SRC
     tail -n +3 "$CUR_DIR/climate" >> $CLIMATE_SRC
