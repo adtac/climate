@@ -31,7 +31,7 @@ After that's done, run `climate` to see the whole list of commands supported.
 `climate` has the following dependencies:
 
 ```
-upower wget curl rar unzip 7z xdg-open dig git python pip node npm fdupes glances speedtest sensors sshfs http-server is-up
+upower wget curl rar unzip 7z dig git python pip node npm fdupes glances speedtest sensors sshfs http-server is-up
 ```
 
 The installation command should automatically install these for `apt`-based systems
