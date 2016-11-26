@@ -212,8 +212,6 @@ main() {
     system_verify "python"     "python"        "python"
     system_verify "pip"        "python-pip"    "python-pip"
     system_verify "npm"        "npm"           "npm"
-    system_verify "ruby"       "ruby"          "ruby"
-    system_verify "gem"        "gem"           "gem"
     system_verify "fdupes"     "fdupes"        "fdupes"
     system_verify "glances"    "glances"       "glances"
     system_verify "sensors"    "lm-sensors"    "lm_sensors"
