@@ -30,7 +30,7 @@ spinner() {
     tput civis
     while kill -0 "$1" 2>/dev/null; do
         i=$(( (i+1) %4 ))
-        printf "\b${spin:$i:1}"
+        printf "\b%s" "${spin:$i:1}"
         sleep 0.07
     done
     tput cnorm
