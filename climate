@@ -585,7 +585,7 @@ elif [[ $command == "memory" ]]; then
 # Disk usage
 
 elif [[ $command == "disk" ]]; then
-    df -H | grep '/dev/sda*' | awk -v BOLD=$PLAIN_BOLD -v PLAIN=$PLAIN '{ printf "%s - %s%s%s / %s%s%s used\n", $1, BOLD, $3, PLAIN, BOLD, $2, PLAIN }'
+    df -H | grep 'da' | awk -v BOLD=$PLAIN_BOLD -v PLAIN=$PLAIN '{ printf "%s - %s%s%s / %s%s%s used\n", $1, BOLD, $3, PLAIN, BOLD, $2, PLAIN }'
 
 # ----------------------------------------------------------------------------
 # Obtain process PIDs
