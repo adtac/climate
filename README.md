@@ -31,7 +31,7 @@ After that's done, run `climate` to see the whole list of commands supported.
 `climate` has the following dependencies:
 
 ```
-upower wget curl rar unzip 7z xdg-open dig git python pip node npm ruby gem fdupes glances speedtest sensors sshfs http-server is-up
+upower wget curl rar unzip 7z xdg-open dig git python pip node npm fdupes glances speedtest sensors sshfs http-server is-up
 ```
 
 The installation command should automatically install these for `apt`-based systems
@@ -143,7 +143,7 @@ Command | Description
 ## License
 
 Thanks to [guarinogabriel/Mac-CLI](https://github.com/guarinogabriel/Mac-CLI)
-for the inspiration.
+for the idea.
 
 See the [LICENSE](LICENSE.md) file for license rights and limitations (AGPL).
 
