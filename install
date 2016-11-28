@@ -189,6 +189,17 @@ main() {
 
     printf "\n${PLAIN}Alright, let's get started with a few questions. Just press enter if you want to use the ${GREEN_BOLD}default value.\n\n"
 
+    printf "   ${RED}RED "
+    printf "${GREEN}GREEN "
+    printf "${BLUE}BLUE "
+    printf "${YELLOW}YELLOW "
+    printf "${PLAIN}PLAIN\n"
+    USE_COLORS=false
+    if yesno "The above text is colored. Do you want to enable colors in climate?"; then
+        USE_COLORS=true
+    fi
+    printf "\n"
+
     SHOW_COMMAND=false
     if yesno "Show commands before execution?" "no" ; then
         SHOW_COMMAND=true
@@ -199,6 +210,7 @@ main() {
     CLIMATE_EXEC="climate"
     CLIMATE_SRC=$INSTALL_DIR/$CLIMATE_EXEC
     printf "#!/usr/bin/env bash\n\n" > $CLIMATE_SRC
+    printf "USE_COLORS=${USE_COLORS}\n" >> $CLIMATE_SRC
     printf "SHOW_COMMAND=${SHOW_COMMAND}\n" >> $CLIMATE_SRC
     printf "EDITOR=${EDITOR}\n" >> $CLIMATE_SRC
     printf "\n" >> $CLIMATE_SRC
