@@ -4,7 +4,14 @@ The ultimate command line tool for Linux!
 
 ![image](https://i.imgur.com/tJudq4U.gif)
 
-**climate** provides a huge number of command line options for developers to automate their Linux system.
+**climate** provides a huge number of command line options
+for developers to automate their Linux system. Check out the Commands
+section below to see the whole list of available commands.
+
+This tool can be extremely helpful to learn various unix commands too.
+There is an option to print each each command before they're executed to
+help you memorize them over time.
+
 
 
 ## Installation
