@@ -2,7 +2,7 @@
 
 The ultimate command line tool for Linux!
 
-![image](https://i.imgur.com/tJudq4U.gif)
+![image](https://i.imgur.com/Ma1UIe7.png)
 
 **climate** provides a huge number of command line options
 for developers to automate their Linux system. Check out the Commands
