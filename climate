@@ -256,7 +256,7 @@ elif [[ $command == "uninstall" ]]; then
 # Display version and credits
 
 elif [[ $command == "version" ]]; then
-    printf "${BLUE_BOLD}climate${PLAIN} v0.1\n\n"
+    printf "${BLUE_BOLD}climate${PLAIN} v0.2\n\n"
     printf "${PLAIN}Copyright (C) 2016  Adhityaa Chandrasekar\n\n"
     printf "${PLAIN}This program is licensed under the GNU Affero General "
     printf "Public License.\nFor more details, refer to the LICENSE file "
