@@ -204,6 +204,7 @@ main() {
     if yesno "Show commands before execution?" "no" ; then
         SHOW_COMMAND=true
     fi
+    printf "\n"
 
     ask EDITOR "What's your favourite editor?" "vi"
 
