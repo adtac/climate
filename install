@@ -201,7 +201,7 @@ main() {
     printf "\n"
 
     SHOW_COMMAND=false
-    if yesno "Show commands before execution?" "no" ; then
+    if yesno "Show commands before execution?"; then
         SHOW_COMMAND=true
     fi
     printf "\n"
