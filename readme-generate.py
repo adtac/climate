@@ -70,7 +70,6 @@ print("""
 ## Commands
 """)
 begun = False
-print("**Meta**:\n")
 print("Command | Description")
 print("--- | ---")
 for line in lines:
@@ -79,9 +78,7 @@ for line in lines:
         split = line.split("${PLAIN_BOLD}")
         if len(split) > 1:
             section = split[1].split(":")[0]
-            print("\n\n**" + section + "**:\n")
-            print("Command | Description")
-            print("--- | ---")
+            print(" <br> | ")
     if begun and line.startswith("# ---"):
         break
     if line.startswith("shelp"):
