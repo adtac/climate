@@ -6,7 +6,7 @@ with open("climate") as file:
 print("# climate\n")
 print("The ultimate command line tool for Linux!\n")
 
-print("![image](https://i.imgur.com/tJudq4U.gif)\n")
+print("![image](https://i.imgur.com/Ma1UIe7.png)\n")
 
 print("""**climate** provides a huge number of command line options
 for developers to automate their Linux system. Check out the Commands
