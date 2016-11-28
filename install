@@ -243,6 +243,7 @@ main() {
     npm_verify "is-online"     "is-online-cli"
 
     pip_verify "speedtest"     "speedtest-cli"
+    pip_verify "httpstat"      "httpstat"
 
     printf "\nNeat! You're all set. Run 'climate' to see the whole list "
     printf "of commands supported. Enjoy!${PLAIN}\n"
