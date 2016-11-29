@@ -236,7 +236,7 @@ if [[ $command == "help" || -z $command ]]; then
 # Update climate
 
 elif [[ $command == "update" ]]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/adtac/climate/master/install)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/adtac/climate/master/install)"
 
 # ----------------------------------------------------------------------------
 # Uninstall climate
