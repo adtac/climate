@@ -99,7 +99,7 @@ Command | Description
  `climate ports` | list open ports
  `climate hosts` | edit the hosts file
  `climate http-server [port]` | http-server serving the current directory
- `climate is-up <domain>` | determine if server is up
+ `climate httpstat <url>` | httpstat visualizes curl statistics,<-h> for help
  <br> | 
  `climate download-file <file>` | download file from server
  `climate download-dir <dir>` | download dir from server

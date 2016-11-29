@@ -199,6 +199,7 @@ help=$(
     shelp "hosts" "edit the hosts file"
     shelp "http-server [port]" "http-server serving the current directory"
     shelp "is-up <domain>" "determine if server is up"
+    shelp "httpstat <url>" "httpstat visualizes curl statistics,<-h> for help"
 
     printf "\n${PLAIN_BOLD}SSH:\n"
     shelp "download-file <file>" "download file from server"
@@ -547,6 +548,15 @@ elif [[ $command == "http-server" ]]; then
 elif [[ $command == "is-up" ]]; then
     if [[ $commandargs != "" ]]; then
         is-up "$commandargs"
+    fi
+
+elif [[ $command == "httpstat" ]]; then
+    if [[ $commandargs != "" ]]; then
+        if [[ $commandargs2 == "-h" ]]; then
+            httpstat "-h"
+        else
+            httpstat "$commandargs"
+        fi
     fi
 
 # ----------------------------------------------------------------------------
