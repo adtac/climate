@@ -531,11 +531,7 @@ elif [[ $command == "is-up" ]]; then
 
 elif [[ $command == "httpstat" ]]; then
     if [[ $commandargs != "" ]]; then
-        if [[ $commandargs2 == "-h" ]]; then
-            httpstat "-h"
-        else
-            httpstat "$commandargs"
-        fi
+        httpstat "$commandargs"
     fi
 
 # ----------------------------------------------------------------------------
