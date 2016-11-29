@@ -121,7 +121,7 @@ npm_verify() {
     if ! command_exists $1; then
         printf "${PLAIN} • ${RED}$1 missing.${PLAIN} "
 
-        if [[ -n "$(which npm)" ]]; then
+        if command_exists npm; then
             printf "Installing...  "
 
             sudo npm install -g "$2"  > /dev/null 2>&1 &
@@ -141,7 +141,7 @@ pip_verify() {
     if ! command_exists $1; then
         printf "${PLAIN} • ${RED}$1 missing.${PLAIN} "
 
-        if [[ -n "$(which npm)" ]]; then
+        if command_exists pip; then
             printf "Installing...  "
 
             sudo pip install "$2"  > /dev/null 2>&1 &
