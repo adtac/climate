@@ -75,7 +75,7 @@ Command | Description
  `climate shutdown [minutes]` | shutdown the computer
  `climate restart` | restart the computer
  `climate time` | show the time
- `climate clock` | put a console clock in the top right corner
+ `climate clock [remove]` | put a console clock in the top right corner
  `climate countdown <seconds>` | a countdown timer
  `climate stopwatch` | a stopwatch
  `climate ix` | pipe output to ix.io

@@ -172,7 +172,7 @@ help=$(
     shelp "shutdown [minutes]" "shutdown the computer"
     shelp "restart" "restart the computer"
     shelp "time" "show the time"
-    shelp "clock" "put a console clock in the top right corner"
+    shelp "clock [remove]" "put a console clock in the top right corner"
     shelp "countdown <seconds>" "a countdown timer"
     shelp "stopwatch" "a stopwatch"
     shelp "ix" "pipe output to ix.io"
@@ -326,13 +326,34 @@ elif [[ $command == "time" ]]; then
     printf "${PLAIN_BOLD}${DATE_TIME}${PLAIN}\n"
 
 elif [[ $command == "clock" ]]; then
-    log 'while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done'
-    while sleep 1; do
-        tput sc
-        tput cup 0 $(($(tput cols)-29))
-        date
-        tput rc
-    done &
+    if [[ $commandargs == "remove" ]]; then
+        PARENT_SHELL=$(ps -p "$$" -o ppid=)
+        if [[ -f "/tmp/clock.$PARENT_SHELL" ]]; then
+            # kill the clock subshell
+            kill -9 $(cat "/tmp/clock.$PARENT_SHELL") > /dev/null
+            rm "/tmp/clock.$PARENT_SHELL"
+
+            # clear out the clock
+            DATE_STR=$(date)
+            LENGTH=${#DATE_STR}
+            tput sc
+            tput cup 0 $(($(tput cols)-29))
+            for i in $(seq 1 $LENGTH); do printf " "; done;
+            tput rc
+        fi
+    else
+        log 'while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done'
+        (while sleep 1; do
+            tput sc
+            tput cup 0 $(($(tput cols)-29))
+            date
+            tput rc
+        done) &
+        CLOCK_PID=$!
+        PARENT_SHELL=$(ps -p "$$" -o ppid= | xargs)
+        # write the PID of the clock to a file
+        echo "$CLOCK_PID" > "/tmp/clock.$PARENT_SHELL"
+    fi
 
 elif [[ $command == "countdown" ]]; then
     now=$(date --utc +%s)
