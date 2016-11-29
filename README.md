@@ -50,7 +50,7 @@ After that's done, run `climate` to see the whole list of commands supported.
 `climate` has the following dependencies:
 
 ```
-upower wget curl rar unzip 7z dig git python pip node npm fdupes glances speedtest sensors sshfs http-server is-up
+upower wget curl rar unzip 7z dig git python pip node npm fdupes glances speedtest sensors sshfs http-server httpstat is-up
 ```
 
 The installation command should automatically install these for `apt`-based systems
@@ -100,6 +100,7 @@ Command | Description
  `climate hosts` | edit the hosts file
  `climate http-server [port]` | http-server serving the current directory
  `climate is-up <domain>` | determine if server is up
+ `climate httpstat <url>` | visualizes curl statistics with httpstat
  <br> | 
  `climate download-file <file>` | download file from server
  `climate download-dir <dir>` | download dir from server
