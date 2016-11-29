@@ -125,7 +125,7 @@ Command | Description
 ## License
 
 ```
-    climate, command line tool for Linux developers
+    Climate - command line tools for Linux developers
     Copyright (C) 2016  Adhityaa Chandrasekar
 
     This program is free software: you can redistribute it and/or modify
