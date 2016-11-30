@@ -687,6 +687,6 @@ elif [[ $command == "empty-trash" ]]; then
 
 elif [[ $command != "" ]]; then
     printf "${help}\n\n"
-    printf "${RED_BOLD}Error: '${command}' command not available\n"
+    printf "${RED_BOLD}Error: '${command}' command not available\n${PLAIN}"
 fi
 # ----------------------------------------------------------------------------
