@@ -146,7 +146,7 @@ command=$1
 commandargs=$2
 commandargs2=$3
 
-TRASH_PATH="~/.local/share/Trash"
+TRASH_PATH="$HOME/.local/share/Trash"
 
 help=$(
     printf "${RED_BOLD}"
