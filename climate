@@ -99,6 +99,7 @@ extract () {
     else
         printf "${RED}'$1' does not exist.\n"
     fi
+    printf "${PLAIN}"
 }
 
 replace() {
