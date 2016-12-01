@@ -252,7 +252,7 @@ elif [[ $command == "uninstall" ]]; then
     if [[ -f "$home/.bashrc" ]]; then
         mv $home/.bashrc $home/.oldbashrc
         grep -v "source /etc/bash_completion.d/climate_completion" $home/.oldbashrc > $home/.bashrc
-        rm $home/.oldbash
+        rm $home/.oldbashrc
     fi
 
     if [[ -f "$home/.zshrc" ]]; then
