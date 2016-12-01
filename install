@@ -157,6 +157,56 @@ pip_verify() {
     printf "\n"
 }
 
+setup_autocomplete() {
+
+    #Create auto complete file
+cat > $CLIMATE_COMPLETION << EOF
+        if [[ ! -z "\$ZSH_VERSION" ]]
+        then
+            autoload compinit
+            autoload bashcompinit
+            compinit
+            bashcompinit
+        fi
+
+        _climate() 
+        {
+            local cur prev opts
+            COMPREPLY=()
+            cur="\${COMP_WORDS[COMP_CWORD]}"
+            prev="\${COMP_WORDS[COMP_CWORD-1]}"
+            opts=\$(cat $CLIMATE_SRC 2>/dev/null |\
+                grep -P 'shelp\s"[^"]+"\s*"[^"]+"' |\
+                cut -d"\"" -f2 |\
+                cut -d" " -f1)
+
+            if [[ ! -z "\$opts" ]] && [[ "\$prev" = "$CLIMATE_EXEC" ]]
+            then
+                COMPREPLY=( \$(compgen -W "\${opts}" -- \${cur}) )
+            fi
+        }
+        complete -F _climate climate
+EOF
+	
+    #Setup bash
+    bashrc=$(eval echo "~$(logname)")/.bashrc
+    if [[ -f "$bashrc" ]]; then
+        if ! grep -Fxq "source $CLIMATE_COMPLETION" $bashrc
+        then
+            printf "\nsource %s" $CLIMATE_COMPLETION >> $bashrc
+        fi
+    fi
+
+    #Setup ZSH
+    zshrc=$(eval echo "~$(logname)")/.zshrc
+    if [[ -f "$zshrc" ]]; then
+        if ! grep -Fxq "source $CLIMATE_COMPLETION" $zshrc
+        then
+            printf "\nsource %s" $CLIMATE_COMPLETION >> $zshrc
+        fi
+    fi
+}
+
 main() {
     INSTALL_DIR=/usr/local/bin
     if [[ ! -z "$1" ]]; then
@@ -217,6 +267,10 @@ main() {
     printf "\n" >> $CLIMATE_SRC
     tail -n +3 "$CUR_DIR/climate" >> $CLIMATE_SRC
     chmod +x $CLIMATE_SRC
+
+    #Creates the auto-completion file
+    CLIMATE_COMPLETION="/etc/bash_completion.d/climate_completion"
+    setup_autocomplete
 
     printf "\nGreat. Now, let's check if you have the all requirements:\n\n"
 
