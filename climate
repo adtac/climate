@@ -244,9 +244,22 @@ elif [[ $command == "update" ]]; then
 # Uninstall climate
 
 elif [[ $command == "uninstall" ]]; then
-    sudo rm /usr/bin/climate -rf
+    sudo rm /usr/local/bin/climate -rf
+    sudo rm /etc/bash_completion.d/climate_completion
+
+    home=$(eval echo "~$(logname)")
+    if [[ -f "$home/.bashrc" ]]; then
+        mv $home/.bashrc $home/.oldbashrc
+        grep -v "source /etc/bash_completion.d/climate_completion" $home/.oldbashrc > $home/.bashrc
+    fi
+
+    if [[ -f "$home/.zshrc" ]]; then
+        mv $home/.zshrc $home/.oldzshrc
+        grep -v "source /etc/bash_completion.d/climate_completion" $home/.oldzshrc  > $home/.zshrc
+    fi
+
     printf "Uninstalling climate: "
-    if [[ -f /usr/bin/climate ]] ; then
+    if [[ -f /usr/local/bin/climate ]] ; then
         printf "${RED_BOLD}Failed${PLAIN}"
     else
         printf "${GREEN_BOLD}Success${PLAIN}\n"
