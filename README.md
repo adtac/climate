@@ -1,6 +1,6 @@
 # Climate
 
-![image](https://i.imgur.com/Ma1UIe7.png)
+![image](https://i.imgur.com/Vgca4yS.png)
 
 **Climate** is the ultimate command line tool for Linux. It
 provides a huge number of command line options for developers to
