@@ -162,7 +162,7 @@ help=$(
     printf "${PLAIN_BOLD}Meta:\n"
     shelp "help" "show this help and exit"
     shelp "update" "update your climate install"
-    shelp "uninstall" "uninstall your climate install :("
+    shelp "uninstall" "uninstall climate :("
     shelp "version" "display the version and credits"
 
     printf "\n${PLAIN_BOLD}Info:\n"

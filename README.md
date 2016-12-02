@@ -64,7 +64,7 @@ Command | Description
 --- | ---
  `climate help` | show this help and exit
  `climate update` | update your climate install
- `climate uninstall` | uninstall your climate install :(
+ `climate uninstall` | uninstall climate :(
  `climate version` | display the version and credits
  <br> | 
  `climate weather [location]` | get the weather
