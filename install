@@ -204,6 +204,7 @@ EOF
         if ! grep -Fxq "source $CLIMATE_COMPLETION" $zshrc
         then
             printf "\nsource %s" $CLIMATE_COMPLETION >> $zshrc
+            source $CLIMATE_COMPLETION
         fi
     fi
 }
