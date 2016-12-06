@@ -60,6 +60,11 @@ and `yum`-based systems (and of course, `dnf`). For others, please install them 
 
 ## Commands
 
+`climate` has command autocompletion. So don't worry, you don't need to
+remember all this. Also, you can just execute `climate help` to display
+this list of commands.
+
+
 Command | Description
 --- | ---
  `climate help` | show this help and exit

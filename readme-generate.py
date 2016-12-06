@@ -68,6 +68,11 @@ and `yum`-based systems (and of course, `dnf`). For others, please install them 
 # commands
 print("""
 ## Commands
+
+`climate` has command autocompletion. So don't worry, you don't need to
+remember all this. Also, you can just execute `climate help` to display
+this list of commands.
+
 """)
 begun = False
 print("Command | Description")
