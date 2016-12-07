@@ -287,6 +287,7 @@ main() {
     system_verify "git"             "git-all"       "git-all"
     system_verify "python"          "python"        "python"
     system_verify "pip"             "python-pip"    "python-pip"
+    system_verify "node"            "nodejs-legacy" "nodejs"
     system_verify "npm"             "npm"           "npm"
     system_verify "fdupes"          "fdupes"        "fdupes"
     system_verify "glances"         "glances"       "glances"
