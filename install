@@ -276,7 +276,7 @@ main() {
 
     printf "\nGreat. Now, let's check if you have the all requirements:\n\n"
 
-    #             command      Debian based    RPM based
+    #             command           Debian based    RPM based
     system_verify "upower"          "upower"        "upower"
     system_verify "curl"            "curl"          "curl"
     system_verify "rar"             "rar"           "-"
