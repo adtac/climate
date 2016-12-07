@@ -690,9 +690,8 @@ elif [[ $command == "get-pids" ]]; then
 
 elif [[ $command == "trash-size" ]]; then
     if [[ -d ${TRASH_PATH} ]]; then
-        SIZE=$(du -hs ${TRASH_PATH} | cut -f1 &)
+        printf "Trash size: ${PLAIN_BOLD}%s${PLAIN}\n" $(du -hs ${TRASH_PATH} | cut -f1) &
         spinner $!
-        printf "Trash size: ${PLAIN_BOLD}${SIZE}${PLAIN}\n"
     else
         printf "${RED_BOLD}Error: Unable to find trash size. Check if ${TRASH_PATH} exists.${PLAIN}\n"
     fi
