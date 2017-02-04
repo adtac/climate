@@ -294,6 +294,7 @@ main() {
     system_verify "sensors"         "lm-sensors"    "lm_sensors"
     system_verify "sshfs"           "sshfs"         "fuse-sshfs"
     system_verify "gawk"            "gawk"          "gawk"
+    system_verify "jq"              "jq"            "jq"
 
     npm_verify "http-server"   "http-server"
     npm_verify "is-up"         "is-up-cli"

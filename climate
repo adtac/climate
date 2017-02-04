@@ -140,6 +140,34 @@ ix() {
     curl $opts -F f:1='<-' $* ix.io/$id
 }
 
+ipinfo() {
+    external_ip="$1"
+    result=$(curl --silent https://ipinfo.io/$external_ip)
+    log "curl --silent https://ipinfo.io/$external_ip"
+    
+    if [[ $result == "Please provide a valid IP address" || -z $result ]]; then
+        printf "${RED_BOLD}Please provide a valid IP address!\n"
+        exit
+    fi
+
+    json_ip=$(echo "$result" | jq -r ".ip")
+    json_hostname=$(echo "$result" | jq -r ".hostname")
+    json_city=$(echo "$result" | jq -r ".city")
+    json_region=$(echo "$result" | jq -r ".region")
+    json_country=$(echo "$result" | jq -r ".country")
+    json_loc=$(echo "$result" | jq -r ".loc")
+    json_org=$(echo "$result" | jq -r ".org")
+    json_postal=$(echo "$result" | jq -r ".postal")
+
+
+    printf "${GREEN_BOLD}IP-Address: ${YELLOW}${json_ip}\n"
+    printf "${GREEN_BOLD}Hostname: ${YELLOW}${json_hostname}\n"
+    printf "${GREEN_BOLD}Network: ${YELLOW}${json_org}\n"
+    printf "${GREEN_BOLD}City: ${YELLOW}${json_city}, ${json_region}, ${json_country}\n"
+    printf "${GREEN_BOLD}Postal Code: ${YELLOW}${json_postal}\n"
+    printf "${GREEN_BOLD}Latitude/Longitude: ${YELLOW}${json_loc}\n"
+}
+
 # ----------------------------------------------------------------------------
 # Parse Args
 
@@ -203,6 +231,7 @@ help=$(
     shelp "http-server [port]" "http-server serving the current directory"
     shelp "is-up <domain>" "determine if server is up"
     shelp "httpstat <url>" "visualizes curl statistics with httpstat"
+    shelp "ipinfo [ip]" "lookup IP with ipinfo.io API"
 
     printf "\n${PLAIN_BOLD}SSH:\n"
     shelp "download-file <file>" "download file from server"
@@ -572,6 +601,9 @@ elif [[ $command == "is-up" ]]; then
     if [[ $commandargs != "" ]]; then
         is-up "$commandargs"
     fi
+
+elif [[ $command == "ipinfo" ]]; then
+    ipinfo "$2"
 
 # ----------------------------------------------------------------------------
 # SSH
