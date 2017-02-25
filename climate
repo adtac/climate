@@ -603,7 +603,7 @@ elif [[ $command == "is-up" ]]; then
     fi
 
 elif [[ $command == "ipinfo" ]]; then
-    ipinfo "$2"
+    ipinfo "$commandargs"
 
 # ----------------------------------------------------------------------------
 # SSH
