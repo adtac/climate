@@ -192,6 +192,11 @@ cat > $CLIMATE_COMPLETION << EOF
                         compopt -o nospace -o dirnames;
                         return 0
                         ;;
+                    "monitor")
+                        COMPREPLY=(\$(compgen -f -- \${cur}))
+                        compopt -o nospace -o filenames;
+                        return 0
+                        ;;
                     *)
                     ;;
                 esac
