@@ -184,6 +184,18 @@ cat > $CLIMATE_COMPLETION << EOF
             then
                 COMPREPLY=( \$(compgen -W "\${opts}" -- \${cur}) )
             fi
+
+            if [ \$COMP_CWORD == 2 ]
+            then
+                case "\$prev" in
+                    "biggest-files"|"biggest-dirs"|"dir-size"|"remove-empty-dirs"|"find-duplicates"|"ssh-unmount"|"upload")
+                        compopt -o nospace -o dirnames;
+                        return 0
+                        ;;
+                    *)
+                    ;;
+                esac
+            fi
         }
         complete -F _climate climate
 EOF
