@@ -80,6 +80,7 @@ extract () {
                 *.tgz)      mkdir -p ${1%.tgz}     && tar xzf $1 -C ${1%.tgz}/     ;;
                 *.zip)                             unzip   $1 -d ${1%.zip}/        ;;
                 *.7z)                              7za e   $1 -o${1%.7z}/          ;;
+                *.rpm)      mkdir -p ${1%.rpm}     && rpm2cpio $1 | (cd ${1%.rpm} && cpio -idmv) ;;
                 *)          printf "${RED}'$1' cannot be extracted.\n"             ;;
             esac
         else
@@ -93,6 +94,7 @@ extract () {
                 *.tgz)      mkdir -p $2 && tar xzf $1 -C $2 ;;
                 *.zip)                     unzip   $1 -d $2 ;;
                 *.7z)                      7z  e   $1 -o$2/ ;;
+                *.rpm)      mkdir -p $2 && rpm2cpio $1 | (cd $2 && cpio -idmv)     ;;
                 *)          printf "${RED}'$1' cannot be extracted.\n"             ;;
             esac
         fi
