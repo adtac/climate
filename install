@@ -184,6 +184,51 @@ cat > $CLIMATE_COMPLETION << EOF
             then
                 COMPREPLY=( \$(compgen -W "\${opts}" -- \${cur}) )
             fi
+
+            if [ \$COMP_CWORD == 2 ]
+            then
+                case "\$prev" in
+                    "biggest-files"|"biggest-dirs"|"dir-size"|"remove-empty-dirs"|"find-duplicates"|"ssh-unmount"|"upload")
+                        compopt -o nospace -o dirnames;
+                        return 0
+                        ;;
+                    "monitor")
+                        COMPREPLY=(\$(compgen -f -- \${cur}))
+                        compopt -o nospace -o filenames;
+                        return 0
+                        ;;
+                    "extract")
+                        COMPREPLY=(\${COMPREPLY[@]} \$( compgen -d -- \$cur ));
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.rar' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.tar.bz2' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.tar.gz' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.tar.xz' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.tar' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.tbz2' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.tgz' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.zip' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.7z' -- \"\$cur\" ))
+                        COMPREPLY=(\${COMPREPLY[@]} \$( eval compgen -f -X '!*.rpm' -- \"\$cur\" ))
+                        compopt -o nospace -o dirnames -o filenames;
+                        return 0
+                        ;;
+                    *)
+                    ;;
+                esac
+            fi
+
+            if [ \$COMP_CWORD == 3 ]
+            then
+                action="\${COMP_WORDS[COMP_CWORD-2]}"
+                case "\$action" in
+                    "extract")
+                        compopt -o nospace -o dirnames;
+                        return 0
+                        ;;
+                    *)
+                    ;;
+                esac
+            fi
         }
         complete -F _climate climate
 EOF
@@ -295,6 +340,8 @@ main() {
     system_verify "sshfs"           "sshfs"         "fuse-sshfs"
     system_verify "gawk"            "gawk"          "gawk"
     system_verify "jq"              "jq"            "jq"
+    system_verify "rpm2cpio"        "rpm2cpio"      "rpm2cpio"
+    system_verify "cpio"            "cpio"          "cpio"
 
     npm_verify "http-server"   "http-server"
     npm_verify "is-up"         "is-up-cli"

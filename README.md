@@ -50,7 +50,7 @@ After that's done, run `climate` to see the whole list of commands supported.
 `climate` has the following dependencies:
 
 ```
-upower wget curl rar unzip 7z dig git python pip node npm fdupes glances speedtest sensors sshfs http-server httpstat is-up
+upower wget curl rar unzip 7z dig git python pip node npm fdupes glances speedtest sensors sshfs http-server httpstat is-up rpm2cpio cpio
 ```
 
 The installation command should automatically install these for `apt`-based systems
@@ -84,6 +84,7 @@ Command | Description
  `climate countdown <seconds>` | a countdown timer
  `climate stopwatch` | a stopwatch
  `climate ix` | pipe output to ix.io
+ `climate seashells` | pipe output to seashells.io in real-time
  <br> | 
  `climate biggest-files [path]` | find the biggest files recursively
  `climate biggest-dirs [path]` | find the biggest directories
