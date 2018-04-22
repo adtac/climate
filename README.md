@@ -84,6 +84,7 @@ Command | Description
  `climate countdown <seconds>` | a countdown timer
  `climate stopwatch` | a stopwatch
  `climate ix` | pipe output to ix.io
+ `climate seashells` | pipe output to seashells.io in real-time
  <br> | 
  `climate biggest-files [path]` | find the biggest files recursively
  `climate biggest-dirs [path]` | find the biggest directories

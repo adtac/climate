@@ -170,6 +170,10 @@ ipinfo() {
     printf "${GREEN_BOLD}Latitude/Longitude: ${YELLOW}${json_loc}\n"
 }
 
+seashells() {
+    tee >(nc seashells.io 1337)
+}
+
 # ----------------------------------------------------------------------------
 # Parse Args
 
@@ -209,6 +213,7 @@ help=$(
     shelp "countdown <seconds>" "a countdown timer"
     shelp "stopwatch" "a stopwatch"
     shelp "ix" "pipe output to ix.io"
+    shelp "seashells" "pipe output to seashells.io in real-time"
 
     printf "\n${PLAIN_BOLD}Files:\n"
     shelp "biggest-files [path]" "find the biggest files recursively"
@@ -431,6 +436,11 @@ elif [[ $command == "stopwatch" ]]; then
 
 elif [[ $command == "ix" ]]; then
     ix
+
+# ----------------------------------------------------------------------------
+# seashells.io
+elif [[ $command == "seashells" ]]; then
+    seashells
 
 # ----------------------------------------------------------------------------
 # Recursively find the biggest files in the given directory
